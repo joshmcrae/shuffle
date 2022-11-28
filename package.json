@@ -8,6 +8,6 @@
   },
   "scripts": {
     "dev": "parcel src/index.htm --dist-dir .dist",
-    "build": "parcel build src/index.htm --public-url /shuffle"
+    "build": "parcel build src/index.htm --public-url /shuffle --dist-dir docs/"
   }
 }
