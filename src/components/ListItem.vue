@@ -1,7 +1,7 @@
 <template>
-    <li>
-        <h3>{{ title }}</h3>
-        <p>{{ description }}</p>
+    <li class="m-2 bg-white rounded drop-shadow p-6 cursor-pointer">
+        <h3 class="font-bold mb-2">{{ title }}</h3>
+        <p class="text-sm">{{ description }}</p>
     </li>
 </template>
 
@@ -13,14 +13,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-li {
-    padding: 16px;
-    border-bottom: 1px solid #eee;
-
-    &:last-of-type {
-        border-bottom: none;
-    }
-}
-</style>
