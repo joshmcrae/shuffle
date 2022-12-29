@@ -11,35 +11,43 @@
                 label="Name"
                 @input="setFormField('name', $event.target.value)"/>
 
-            <div class="header">
+            <div class="flex justify-between">
                 <h2 class="font-medium">Ingredients</h2>
                 <button
                     class="action"
                     @click="addIngredient">
-                    Add
+                    <PhPlus
+                        :size="16"
+                        weight="thin"/>
                 </button>
             </div>
 
             <ul>
                 <li
                     v-for="(ingredient, offset) in form.ingredients"
-                    :key="offset">
+                    :key="offset"
+                    class="flex justify-between py-2 my-4 border-b border-gray-200">
                     <input
+                        class="focus:outline-none"
                         :value="ingredient"
                         placeholder="New Ingredient"
                         @input="updateIngredient(offset, $event.target.value)"/>
 
                     <button @click="removeIngredient(offset)">
-                        Remove
+                        <PhX
+                            :size="16"
+                            weight="thin"/>
                     </button>
                 </li>
             </ul>
 
-            <button
-                class="btn error"
+            <FormButton
+                class="my-8"
+                type="danger"
+                outline
                 @click="deleteMeal">
-                Delete
-            </button>
+                Delete Meal
+            </FormButton>
         </div>
     </Header>
 </template>
@@ -48,13 +56,18 @@
 import { mapActions, mapState } from 'pinia'
 import { useNavStore } from '../store/nav'
 import { useMealsStore } from '../store/meals'
+import { PhPlus, PhX } from 'phosphor-vue'
 import Header from './Header.vue'
 import TextInput from './TextInput.vue'
+import FormButton from './FormButton.vue'
 
 export default {
     components: {
         Header,
-        TextInput
+        TextInput,
+        PhPlus,
+        PhX,
+        FormButton
     },
     computed: {
         ...mapState(useMealsStore, ['form'])
