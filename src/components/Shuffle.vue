@@ -1,36 +1,31 @@
 <template>
-    <div>
-        <h1>Next Week</h1>
-
+    <Header
+        title="Plan"
+        leftActionIcon="PhArrowsClockwise"
+        rightActionIcon="PhCheck"
+        @leftActionClick="shuffle">
         <ul>
             <ListItem
                 v-for="(meal, offset) in menuMeals"
                 :key="offset"
-                :title="meal.name"/>
+                :title="meal.name"
+                :description="`Meal #${offset + 1}`"/>
         </ul>
-
-        <button
-            class="btn action"
-            @click="shuffle">
-            Shuffle
-        </button>
-
-        <button
-            class="btn"
-            @click="pop">
-            Back
-        </button>
-    </div>
+    </Header>
 </template>
 
 <script>
 import { mapActions, mapState } from 'pinia'
 import { useNavStore } from '../store/nav'
 import { useMealsStore } from '../store/meals'
+import Header from './Header.vue'
 import ListItem from './ListItem.vue'
 
 export default {
-    components: { ListItem },
+    components: {
+        Header,
+        ListItem
+    },
     computed: mapState(useMealsStore, ['menuMeals']),
     beforeMount() {
         this.shuffle()

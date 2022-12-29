@@ -1,9 +1,9 @@
 <template>
-    <div class="w-full h-full flex flex-col">
+    <div class="w-full h-full relative">
         <component
-            class="flex-grow"
+            class="absolute inset-0 bottom-14"
             :is="screen"/>
-        <TabBar class="basis-14 grow-0 shrink-0"/>
+        <TabBar class="absolute bottom-0"/>
     </div>
 </template>
 
