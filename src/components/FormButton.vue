@@ -16,8 +16,8 @@ export default {
             const classes = [
                 'w-full',
                 'p-2',
-                'text-sm',
-                'rounded'
+                'rounded',
+                'font-medium'
             ]
 
             

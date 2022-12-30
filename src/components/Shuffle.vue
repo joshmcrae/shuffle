@@ -1,8 +1,8 @@
 <template>
     <Header
         title="Plan"
-        leftActionIcon="PhArrowsClockwise"
-        rightActionIcon="PhCheck"
+        leftActionIcon="fa-arrows-rotate"
+        rightActionIcon="fa-check"
         @leftActionClick="shuffle">
         <ul>
             <ListItem

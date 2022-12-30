@@ -1,7 +1,7 @@
 <template>
     <Header
         title="Edit Meal"
-        rightActionIcon="PhCheck"
+        rightActionIcon="fa-check"
         @rightActionClick="updateMeal"
         back>
         <div class="px-6">
@@ -11,14 +11,12 @@
                 label="Name"
                 @input="setFormField('name', $event.target.value)"/>
 
-            <div class="flex justify-between">
+            <div class="w-full flex justify-between">
                 <h2 class="font-medium">Ingredients</h2>
                 <button
-                    class="action"
+                    class="w-6"
                     @click="addIngredient">
-                    <PhPlus
-                        :size="16"
-                        weight="thin"/>
+                    <fa-icon icon="fa-plus"/>
                 </button>
             </div>
 
@@ -33,10 +31,10 @@
                         placeholder="New Ingredient"
                         @input="updateIngredient(offset, $event.target.value)"/>
 
-                    <button @click="removeIngredient(offset)">
-                        <PhX
-                            :size="16"
-                            weight="thin"/>
+                    <button
+                        class="w-6"
+                        @click="removeIngredient(offset)">
+                        <fa-icon icon="fa-xmark"/>
                     </button>
                 </li>
             </ul>
@@ -56,7 +54,6 @@
 import { mapActions, mapState } from 'pinia'
 import { useNavStore } from '../store/nav'
 import { useMealsStore } from '../store/meals'
-import { PhPlus, PhX } from 'phosphor-vue'
 import Header from './Header.vue'
 import TextInput from './TextInput.vue'
 import FormButton from './FormButton.vue'
@@ -65,8 +62,6 @@ export default {
     components: {
         Header,
         TextInput,
-        PhPlus,
-        PhX,
         FormButton
     },
     computed: {

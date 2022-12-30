@@ -1,7 +1,7 @@
 <template>
     <Header
         title="Meals"
-        rightActionIcon="PhPlus"
+        rightActionIcon="fa-plus"
         @rightActionClick="createMeal">
         <ul>
             <ListItem

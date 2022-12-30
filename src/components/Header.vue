@@ -1,31 +1,27 @@
 <template>
     <div class="flex flex-col">
         <div class="flex justify-between items-center py-5 px-6 bg-gray-50 border-b border-gray-100">
-            <div class="w-6 text-yellow-400">
-                <PhCaretLeft
+            <div class="w-6 text-yellow-400 text-2xl">
+                <button 
                     v-if="back"
-                    class="cursor-pointer"
-                    :size="24"
-                    weight="light"
-                    @click="pop"/>
+                    @click="pop">
+                    <fa-icon icon="fa-angle-left"/>
+                </button>
 
-                <component
+                <button
                     v-if="leftActionIcon"
-                    class="cursor-pointer"
-                    :is="leftActionIcon"
-                    :size="24"
-                    weight="light"
-                    @click="$emit('leftActionClick')"/>
+                    @click="$emit('leftActionClick')">
+                    <fa-icon :icon="leftActionIcon"/>
+                </button>
             </div>
             <h1 class="font-medium text-xl">{{ title }}</h1>
-            <div class="w-6 text-yellow-400">
-                <component
+            <div
+                class="w-6 text-yellow-400 text-2xl">
+                <button
                     v-if="rightActionIcon"
-                    class="cursor-pointer"
-                    :is="rightActionIcon"
-                    :size="24"
-                    weight="light"
-                    @click="$emit('rightActionClick')"/>
+                    @click="$emit('rightActionClick')">
+                    <fa-icon :icon="rightActionIcon"/>
+                </button>
             </div>
         </div>
 
@@ -38,16 +34,9 @@
 <script>
 import { mapActions } from 'pinia'
 import { useNavStore } from '../store/nav'
-import { PhCaretLeft, PhPlus, PhCheck, PhArrowsClockwise } from 'phosphor-vue'
 
 export default {
     name: 'Header',
-    components: {
-        PhCaretLeft,
-        PhPlus,
-        PhCheck,
-        PhArrowsClockwise
-    },
     props: {
         title: String,
         back: Boolean,

@@ -4,42 +4,35 @@
             v-for="tab in tabs"
             :class="tabClasses(tab)"
             @click="navigateTo(tab)">
-            <component
-                :is="tab.icon"
-                :size="32"
-                weight="thin"/>
+            <fa-icon :icon="tab.icon"/>
         </div>
     </div>
 </template>
 
 <script>
-import { PhGearSix, PhListPlus, PhShuffle, PhClockCounterClockwise } from 'phosphor-vue'
 import { mapActions, mapState } from 'pinia';
 import { useNavStore } from '../store/nav'
 
 export default {
     name: 'TabBar',
-    components: {
-        PhGearSix
-    },
     computed: {
         ...mapState(useNavStore, ['screen']),
         tabs() {
             return [
                 {
-                    icon: PhListPlus,
+                    icon: 'fa-map',
                     screens: ['Meals', 'Meal']
                 },
                 {
-                    icon: PhShuffle,
+                    icon: 'fa-shuffle',
                     screens: ['Shuffle']
                 },
                 {
-                    icon: PhClockCounterClockwise,
+                    icon: 'fa-clock-rotate-left',
                     screens: ['History']
                 },
                 {
-                    icon: PhGearSix,
+                    icon: 'fa-gear',
                     screens: ['Settings']
                 }
             ]
@@ -51,6 +44,7 @@ export default {
             return [
                 'px-6',
                 'cursor-pointer',
+                'text-2xl',
                 tab.screens.includes(this.screen) ? 'text-yellow-500' : 'text-normal'
             ]
         },

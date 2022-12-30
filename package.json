@@ -5,7 +5,6 @@
     "@parcel/transformer-vue": "^2.8.0",
     "@parcel/transformer-webmanifest": "^2.8.0",
     "parcel": "^2.8.0",
-    "phosphor-vue": "^4.4.0",
     "pinia": "^2.0.24",
     "postcss": "^8.4.20",
     "tailwindcss": "^3.2.4",
@@ -14,5 +13,10 @@
   "scripts": {
     "dev": "parcel src/index.htm --dist-dir .dist",
     "build": "parcel build src/index.htm --public-url /shuffle --dist-dir docs/"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/vue-fontawesome": "^3.0.2"
   }
 }
