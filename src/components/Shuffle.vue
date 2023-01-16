@@ -3,7 +3,8 @@
         title="Plan"
         leftActionIcon="fa-arrows-rotate"
         rightActionIcon="fa-check"
-        @leftActionClick="shuffle">
+        @leftActionClick="shuffle"
+        @rightActionClick="commitMenu">
         <ul>
             <ListItem
                 v-for="(meal, offset) in menuMeals"
@@ -32,7 +33,7 @@ export default {
     },
     methods: {
         ...mapActions(useNavStore, ['pop']),
-        ...mapActions(useMealsStore, ['shuffle'])
+        ...mapActions(useMealsStore, ['shuffle', 'commitMenu'])
     }
 }
 </script>

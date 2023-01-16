@@ -14,13 +14,17 @@ import TabBar from './TabBar.vue'
 import Meals from './Meals.vue'
 import Meal from './Meal.vue'
 import Shuffle from './Shuffle.vue'
+import History from './History.vue'
+import Menu from './Menu.vue'
 
 export default {
     components: {
         TabBar,
         Meals,
         Meal,
-        Shuffle
+        History,
+        Shuffle,
+        Menu
     },
     computed: mapState(useNavStore, ['screen'])
 }

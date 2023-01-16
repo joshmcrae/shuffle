@@ -1,19 +1,40 @@
 import { defineStore } from 'pinia'
 import { useNavStore } from './nav'
+import { find } from '../utils'
 
 export const useMealsStore = defineStore('meals', {
     state: () => {
-        const persisted = JSON.parse(localStorage.getItem('meals') ?? '[]')
+        const menu = JSON.parse(localStorage.getItem('meals') ?? '[]')
+        const history = JSON.parse(localStorage.getItem('history') ?? '[]')
 
         return {
-            meals: [...persisted],
+            meals: [...menu],
+            history: [...history],
             menu: [],
-            form: null
+            form: null,
+            selectedMenuId: null
         }
     },
     getters: {
         menuMeals() {
             return this.menu.map(o => this.meals[o])
+        },
+        menuHistory() {
+            const history = [...this.history]
+
+            return history.sort((a, b) => a.id > b.id ? -1 : 1)
+        },
+        selectedMenu() {
+            const menu = find(this.history, m => m.id === this.selectedMenuId)
+
+            if (!menu) {
+                return null
+            }
+
+            return {
+                id: menu.id,
+                meals: menu.items.map(id => find(this.meals, m => m.id === id))
+            }
         }
     },
     actions: {
@@ -75,7 +96,7 @@ export const useMealsStore = defineStore('meals', {
             this.form.ingredients[offset] = ingredient
         },
         removeIngredient(offset) {
-            this.form.ingredients = this.form.ingredients.filter((ingredient, i) => i !== offset)
+            this.form.ingredients = this.form.ingredients.filter((_, i) => i !== offset)
         },
         setFormField(field, value) {
             this.form[field] = value
@@ -90,8 +111,26 @@ export const useMealsStore = defineStore('meals', {
 
             this.menu = menu
         },
+        commitMenu() {
+            const menu = {
+                id: (new Date()).getTime(),
+                items: this.menu.map(i => this.meals[i].id)
+            }
+
+            this.history.push(menu)
+            this._persist()
+
+            this.viewMenu(menu.id)
+        },
+        viewMenu(id) {
+            const nav = useNavStore()
+            this.selectedMenuId = id
+
+            nav.navigate('Menu')
+        },
         _persist() {
             localStorage.setItem('meals', JSON.stringify(this.meals))
+            localStorage.setItem('history', JSON.stringify(this.history))
         }
     }
 })

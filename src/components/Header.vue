@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col">
-        <div class="flex justify-between items-center py-5 px-6 bg-gray-50 border-b border-gray-100">
+        <div class="flex justify-between items-center shrink-0 h-20 px-6 bg-gray-50 border-b border-gray-100">
             <div class="w-6 text-yellow-400 text-2xl">
                 <button 
                     v-if="back"

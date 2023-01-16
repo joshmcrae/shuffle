@@ -29,7 +29,7 @@ export default {
                 },
                 {
                     icon: 'fa-clock-rotate-left',
-                    screens: ['History']
+                    screens: ['History', 'Menu']
                 },
                 {
                     icon: 'fa-gear',
